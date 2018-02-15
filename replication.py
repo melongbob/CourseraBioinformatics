@@ -1,3 +1,22 @@
+#Find all positions where the pattern occurs in the genome
+#input: string Pattern, string Genome
+#output: list positions (list of positions in Genome where Pattern occurs)
+def PatternMatching(Pattern, Genome):
+        positions = []
+        for i in range(len(Genome)-len(Pattern)):
+                if Genome[i:i+len(Pattern)] == Pattern:
+                        positions.append(i)
+        return positions
+
+#returns reverse complement of a string
+#input: string Pattern
+#output: string revComp (reverse complement of Pattern)
+def ReverseComplement(Pattern):
+        revComp = ""
+        rev = reverse(Pattern)
+        revComp = complement(rev)
+        return revComp
+
 #return complement of the input string
 #input: string Pattern
 #output: string complement (complement of Pattern)
@@ -17,7 +36,7 @@ def complement(Pattern):
 #reverses the input string
 #input: string Pattern
 #output: string rev (reverse of Pattern)
-def Reverse(Pattern):
+def reverse(Pattern):
         reverse = ""
         for i in range(len(Pattern)):
                 reverse = Pattern[i] + reverse
@@ -75,3 +94,4 @@ k = 10
 
 #Print the result
 print(FrequentWords(Text, k))
+print(ReverseComplement(Pattern))
