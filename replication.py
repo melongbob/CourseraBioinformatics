@@ -26,7 +26,9 @@ def CountDict(Text, k):
     return Count
 
 #Counts number of 'Patterns' in the 'Text'
-def PatternCount(Pattern, Text):
+#input: string Text, string Pattern
+#output: int count (number of times Pattern appears in Text)
+def PatternCount(Text, Pattern):
     count = 0
     for i in range(len(Text)-len(Pattern)+1):
         if Text[i:i+len(Pattern)] == Pattern:
