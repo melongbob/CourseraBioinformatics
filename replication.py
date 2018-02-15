@@ -1,11 +1,27 @@
+#return complement of the input string
+#input: string Pattern
+#output: string complement (complement of Pattern)
+def complement(Pattern):
+        complement = ""
+        for i in range(len(Pattern)):
+                if Pattern[i] == 'A':
+                        complement += 'T'
+                elif Pattern[i] == 'C':
+                        complement += 'G'
+                elif Pattern[i] == 'G':
+                        complement += 'C'
+                else:
+                        complement += 'A'
+        return complement
+
 #reverses the input string
 #input: string Pattern
 #output: string rev (reverse of Pattern)
 def Reverse(Pattern):
-        rev = ""
+        reverse = ""
         for i in range(len(Pattern)):
-                rev = Pattern[i] + rev
-        return rev
+                reverse = Pattern[i] + reverse
+        return reverse
 
 #Output a list of most frequent k-mers in Text
 #input: string Text, int k
