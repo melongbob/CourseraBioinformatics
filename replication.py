@@ -1,3 +1,12 @@
+#reverses the input string
+#input: string Pattern
+#output: string rev (reverse of Pattern)
+def Reverse(Pattern):
+        rev = ""
+        for i in range(len(Pattern)):
+                rev = Pattern[i] + rev
+        return rev
+
 #Output a list of most frequent k-mers in Text
 #input: string Text, int k
 #output: list FrequentPatternsNoDuplicates (list of patterns in Text that appear most frequently)
