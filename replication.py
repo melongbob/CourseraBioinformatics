@@ -12,7 +12,8 @@ def FrequentWords(Text, k):
 	return FrequentPatternsNoDuplicates
 
 #Output a list of objects from Items without duplicates
-#
+#input: list Items
+#output: list ItemsNoDuplicates (list of items without duplicates)
 def remove_duplicates(Items):
 	ItemsNoDuplicates = []
 	for i in range(len(Items)):
