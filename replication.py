@@ -1,15 +1,18 @@
 #Output a list of most frequent k-mers in Text
+#input: string Text, int k
+#output: list FrequentPatternsNoDuplicates (list of patterns in Text that appear most frequently)
 def FrequentWords(Text, k):
 	FrequentPatterns = []
-	Count = FrequencyMap(Text, k)
-	m = max(Count.values())
-	for i in Count:
-		if Count[i] == m:
+	freq = FrequencyMap(Text, k)
+	m = max(freq.values())
+	for i in freq:
+		if freq[i] == m:
 			FrequentPatterns.append(Text[i:i+k])
 	FrequentPatternsNoDuplicates = remove_duplicates(FrequentPatterns)
 	return FrequentPatternsNoDuplicates
 
 #Output a list of objects from Items without duplicates
+#
 def remove_duplicates(Items):
 	ItemsNoDuplicates = []
 	for i in range(len(Items)):
@@ -21,11 +24,11 @@ def remove_duplicates(Items):
 #input: string Text, int k
 #output: dictionary count (number of times each k-mer appears in Text)
 def FrequencyMap(Text, k):
-    Count = {} 
+    freq = {} 
     for i in range(len(Text)-k+1):
         Pattern = Text[i:i+k]
-        Count[i] = PatternCount(Text, Pattern)
-    return Count
+        freq[i] = PatternCount(Text, Pattern)
+    return freq
 
 #Counts number of 'Patterns' in the 'Text'
 #input: string Text, string Pattern
