@@ -1,7 +1,7 @@
 #Output a list of most frequent k-mers in Text
 def FrequentWords(Text, k):
 	FrequentPatterns = []
-	Count = CountDict(Text, k)
+	Count = FrequencyMap(Text, k)
 	m = max(Count.values())
 	for i in Count:
 		if Count[i] == m:
@@ -18,11 +18,13 @@ def remove_duplicates(Items):
 	return ItemsNoDuplicates
 
 #Count k-mers in Text
-def CountDict(Text, k):
+#input: string Text, int k
+#output: dictionary count (number of times each k-mer appears in Text)
+def FrequencyMap(Text, k):
     Count = {} 
     for i in range(len(Text)-k+1):
         Pattern = Text[i:i+k]
-        Count[i] = PatternCount(Pattern, Text)
+        Count[i] = PatternCount(Text, Pattern)
     return Count
 
 #Counts number of 'Patterns' in the 'Text'
