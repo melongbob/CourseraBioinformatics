@@ -1,7 +1,17 @@
 #------------------------- Week 2 ------------------------------
 
+#find number of approximate pattern occurrences
+#input: string Pattern, string Text, int d
+#output: int count (number of occurrences of approximate pattern)
+def ApproximatePatternCount(Pattern, Text, d):
+        count = 0
+        for i in range(len(Text) - len(Pattern) + 1):
+                if HammingDistance(Pattern, Text[i:i+len(Pattern)]) <= d:
+                        count = count + 1
+        return count
+
 #find number of occurrences of approximate patterns
-#input: string Pattern, string Text, integer d
+#input: string Pattern, string Text, int d
 #output: list positions (starting positions where Pattern occurs)
 def ApproximatePatternMatching(Pattern, Text, d):
         positions = []
