@@ -1,3 +1,14 @@
+#Gives number of occurrences of a symbol in a given window
+#input: string Genome, char symbol
+#output: dictionary array (occurrences of each symbol in each position)
+def SymbolArray(Genome, symbol):
+        array = {}
+        n = len(Genome)
+        ExtendedGenome = Genome + Genome[0:n//2]
+        for i in range(n):
+                array[i] = PatternCount(symbol, ExtendedGenome[i:i+(n//2)])
+        return array
+
 #Find all positions where the pattern occurs in the genome
 #input: string Pattern, string Genome
 #output: list positions (list of positions in Genome where Pattern occurs)
