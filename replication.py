@@ -1,3 +1,18 @@
+#Find G-C value upto each position
+#input: string Genome
+#output: dictionary skew (G-C in each position)
+def SkewArray(Genome):
+        skew = {}
+        skew[0] = 0
+        for i in range(len(Genome)):
+                if Genome[i] == 'C':
+                        skew[i+1] = skew[i] - 1
+                elif Genome[i] == 'G':
+                        skew[i+1] = skew[i] + 1
+                else:
+                        skew[i+1] = skew[i]
+        return skew
+
 #Gives number of occurrences of a symbol in a given window
 #input: string Genome, char symbol
 #output: dictionary array (occurrences of each symbol in each position)
