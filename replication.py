@@ -1,3 +1,15 @@
+#------------------------- Week 2 ------------------------------
+
+#find Hamming distance between two strings
+#input: string p, string q
+#output: integer count (Hamming distance between p and q)
+def HammingDistance(p, q):
+        count = 0
+        for i in range(max(len(p), len(q))):
+                if p[i] != q[i]:
+                        count = count + 1
+        return count
+
 #find positions where skew array value is minimum
 #input: string Genome
 #output: list skew (list of positions where skew array value is minimum)
@@ -42,6 +54,8 @@ def SymbolArray(Genome, symbol):
                 if ExtendedGenome[i+(n//2)-1] == symbol:
                         array[i] + 1
         return array
+
+#--------------------------- Week 1 ---------------------------------
 
 #Find all positions where the pattern occurs in the genome
 #input: string Pattern, string Genome
