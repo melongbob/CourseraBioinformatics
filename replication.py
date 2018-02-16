@@ -1,3 +1,15 @@
+#find positions where skew array value is minimum
+#input: string Genome
+#output: list skew (list of positions where skew array value is minimum)
+def MinimumSkew(Genome):
+        positions = []
+        skew = SkewArray(Genome)
+        minimum = min(skew.values())
+        for i in range(len(Genome)):
+                if skew[i] == minimum:
+                        positions.append(i)
+        return positions
+
 #Find G-C value upto each position
 #input: string Genome
 #output: dictionary skew (G-C in each position)
