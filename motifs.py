@@ -1,4 +1,19 @@
 #------------------------- Week 3 ----------------------------------
+def Consensus(Motifs):
+    k = len(Motifs[0])
+    count = Count(Motifs)
+
+    consensus = ""
+    for j in range(k):
+        m = 0
+        frequentSymbol = ""
+        for symbol in "ACGT":
+            if count[symbol][j] > m:
+                m = count[symbol][j]
+                frequentSymbol = symbol
+        consensus += frequentSymbol
+    
+    return consensus
 
 def Profile(Motifs):
     t = len(Motifs)
@@ -10,7 +25,7 @@ def Profile(Motifs):
     for symbol in "ACGT":
         for j in range(k):
             profile[symbol][j] /= t
-    
+
     return profile
 
 def Count(Motifs):
@@ -33,4 +48,6 @@ def Count(Motifs):
 Motifs = ["AACGTA", "CCCGTT", "CACCTT", "GGATTA", "TTCCGG"]
 #print(Count(Motifs))
 
-print(Profile(Motifs))
+#print(Profile(Motifs))
+
+print(Consensus(Motifs))
