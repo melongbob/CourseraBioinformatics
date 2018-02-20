@@ -6,8 +6,6 @@ def Profile(Motifs):
     profile = {}
 
     profile = Count(Motifs)
-
-    print(profile)
     
     for symbol in "ACGT":
         for j in range(k):
