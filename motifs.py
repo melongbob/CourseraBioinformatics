@@ -1,4 +1,17 @@
 #------------------------- Week 3 ----------------------------------
+def Score(Motifs):
+    k = len(Motifs[0])
+    t = len(Motifs)
+    consensus = Consensus(Motifs)
+    score = 0
+    
+    for i in range(t):
+        for j in range(k):
+             if Motifs[i][j] != consensus[j]:
+                 score += 1
+
+    return score
+
 def Consensus(Motifs):
     k = len(Motifs[0])
     count = Count(Motifs)
@@ -50,4 +63,6 @@ Motifs = ["AACGTA", "CCCGTT", "CACCTT", "GGATTA", "TTCCGG"]
 
 #print(Profile(Motifs))
 
-print(Consensus(Motifs))
+#print(Consensus(Motifs))
+
+print(Score(Motifs))
