@@ -1,5 +1,18 @@
 #------------------------- Week 3 ----------------------------------
 
+def Profile(Motifs):
+    t = len(Motifs)
+    k = len(Motifs[0])
+    profile = {}
+
+    profile = Count(Motifs)
+    
+    for symbol in "ACGT":
+        for j in range(k):
+            profile[symbol][j] /= t
+    
+    return profile
+
 def Count(Motifs):
     count = {}
     k = len(Motifs[0])
@@ -18,4 +31,6 @@ def Count(Motifs):
 
 
 Motifs = ["AACGTA", "CCCGTT", "CACCTT", "GGATTA", "TTCCGG"]
-print(Count(Motifs))
+#print(Count(Motifs))
+
+print(Profile(Motifs))
