@@ -1,8 +1,27 @@
 #------------------------- Week 3 ----------------------------------
 
+#Finds best Motifs
+#input: list Dna, int k, int t
+#output: list BestMotifs
+
+def GreedyMotifSearch(Dna, k, t):
+    BestMotifs = []
+    for i in range(0, t):
+        BestMotifs.append(Dna[i][0:k])
+    n = len(Dna[0])
+    for i in range(n-k+1):
+        Motifs = []
+        Motifs.append(Dna[0][i:i + k])
+        for j in range(0, t):
+            P = Profile(Motifs[0:j])
+            Motifs.append(ProfileMostProbablePattern(Dna[j], k, P))
+        if Score(Motifs) < Score(BestMotifs):
+            BestMotifs = Motifs
+    return BestMotifs
+                          
 #Find a profile-most probable k-mer in a string
-#input: str Text, dict Profile
-#output: str
+#input: str Text, int k, dict Profile
+#output: str mostProbableKmer
 
 def ProfileMostProbablePattern(Text, k, Profile):
     probability = 0
