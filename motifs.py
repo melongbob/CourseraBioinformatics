@@ -12,7 +12,7 @@ def GreedyMotifSearch(Dna, k, t):
     for i in range(n-k+1):
         Motifs = []
         Motifs.append(Dna[0][i:i + k])
-        for j in range(0, t):
+        for j in range(1, t):
             P = Profile(Motifs[0:j])
             Motifs.append(ProfileMostProbablePattern(Dna[j], k, P))
         if Score(Motifs) < Score(BestMotifs):
