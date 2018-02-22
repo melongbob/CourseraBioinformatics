@@ -1,8 +1,22 @@
 #------------------------- Week 3 ----------------------------------
 
+#Find a profile-most probable k-mer in a string
+#input: str Text, dict Profile
+#output: str
+
+def ProfileMostProbablePattern(Text, k, Profile):
+    probability = 0
+    mostProbableKmer = Text[0:k]
+    for i in range(len(Text) - k + 1):
+        kmer = Text[i:k + i]
+        if Pr(kmer, Profile) > probability:
+            probability = Pr(kmer, Profile)
+            mostProbableKmer = kmer
+    return mostProbableKmer
+    
 #Calculate score of given string with given profile
 #input: string Text, list Motifs
-#output: return 
+#output: double p 
 
 def Pr(Text, Profile):
     p = 1
@@ -85,7 +99,7 @@ def Count(Motifs):
 
     return count
  
-Motifs = ["AACGTA", "CCCGTT", "CACCTT", "GGATTA", "TTCCGG"]
+#Motifs = ["AACGTA", "CCCGTT", "CACCTT", "GGATTA", "TTCCGG"]
 
 #print(Count(Motifs))
 
@@ -95,7 +109,17 @@ Motifs = ["AACGTA", "CCCGTT", "CACCTT", "GGATTA", "TTCCGG"]
 
 #print(Score(Motifs))
 
-Text = "ACGGGGATTACC"
-Profile = {'A': [0.2, 0.2, 0.0, 0.0, 0.0, 0.0, 0.9, 0.1, 0.1, 0.1, 0.3, 0.0], 'C': [0.1, 0.6, 0.0, 0.0, 0.0, 0.0, 0.0, 0.4, 0.1, 0.2, 0.4, 0.6], 'G': [0.0, 0.0, 1.0, 1.0, 0.9, 0.9, 0.1, 0.0, 0.0, 0.0, 0.0, 0.0], 'T': [0.7, 0.2, 0.0, 0.0, 0.1, 0.1, 0.0, 0.5, 0.8, 0.7, 0.3, 0.4]}
+Text = "ACCTGTTTATTGCCTAAGTTCCGAACAAACCCAATATAGCCCGAGGGCCT"
+Profile = { 
+  'A': [0.2, 0.2, 0.3, 0.2, 0.3],
+  'C': [0.4, 0.3, 0.1, 0.5, 0.1],
+  'G': [0.3, 0.3, 0.5, 0.2, 0.4],
+  'T': [0.1, 0.2, 0.1, 0.1, 0.2]
+}
+k = 5
 
-print(Pr(Text, Profile))
+#Profile = {'A': [0.2, 0.2, 0.0, 0.0, 0.0, 0.0, 0.9, 0.1, 0.1, 0.1, 0.3, 0.0], 'C': [0.1, 0.6, 0.0, 0.0, 0.0, 0.0, 0.0, 0.4, 0.1, 0.2, 0.4, 0.6], 'G': [0.0, 0.0, 1.0, 1.0, 0.9, 0.9, 0.1, 0.0, 0.0, 0.0, 0.0, 0.0], 'T': [0.7, 0.2, 0.0, 0.0, 0.1, 0.1, 0.0, 0.5, 0.8, 0.7, 0.3, 0.4]}
+
+#print(Pr(Text, Profile))
+
+print(ProfileMostProbablePattern(Text, k, Profile))
