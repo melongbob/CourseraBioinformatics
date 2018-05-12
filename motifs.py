@@ -1,13 +1,26 @@
 #------------------------- Week 4 ----------------------------------
 
-# 
+# Returns profile calculated with pseudocounts
+# Input:  A set of kmers Motifs
+# Output: ProfileWithPseudocounts(Motifs)
+def ProfileWithPseudocounts(Motifs):
+    t = len(Motifs)
+    k = len(Motifs[0])
+    
+    profile = CountWithPseudocounts(Motifs)
+    for symbol in "ACGT":
+        for j in range(k):
+            profile[symbol][j] /= (t + 4)
+    
+    return profile
+
+# Returns count with pseudocounts (adds 1 to every entity initially)
 # Input: list Motifs
 # Output: dictionary count (count with pseudo-counts)
 
 def CountWithPseudocounts(Motifs):
     t = len(Motifs)
     k = len(Motifs[0])
-    # insert your code here
 
     count = {}
     for symbol in "ACGT":
