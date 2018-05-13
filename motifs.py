@@ -1,5 +1,18 @@
 #------------------------- Week 4 ----------------------------------
 
+# Returns a list of the Profile-most probable k-mers in each string from Dna
+# Input:  list Profile, list Dna
+# Output: list Motif
+def Motifs(Profile, Dna):
+    Text = Dna
+    k = 4
+    Profile = Profile
+    MostProbableMotifs = []
+    
+    for i in range(len(Dna)):
+        MostProbableMotifs.append(ProfileMostProbablePattern(Text[i], k, Profile))
+    return MostProbableMotifs
+                                 
 #Returns best motifs calculated with pseudocounts (to use, functions
 #need to be edited to integrate count, profile with pseudocounts
 #Input: list Dna, int k, int t
