@@ -1,8 +1,20 @@
+import random
+
 #------------------------- Week 4 ----------------------------------
+
+# Uses raondom.randint to choose a random k-mer from each of t different strings Dna
+# Input: list Dna, int k, int t
+# Output: list RandomStrings
+def RandomMotifs(Dna, k, t):
+    RandomStrings = []
+    for i in range(t):
+        r = random.randint(1, len(Dna[0]) - k)
+        RandomStrings.append(Dna[i][r:r + k])
+    return RandomStrings
 
 # Returns a list of the Profile-most probable k-mers in each string from Dna
 # Input:  list Profile, list Dna
-# Output: list Motif
+# Output: list MostProbableMotifs
 def Motifs(Profile, Dna):
     Text = Dna
     k = 4
@@ -50,7 +62,6 @@ def ProfileWithPseudocounts(Motifs):
 # Returns count with pseudocounts (adds 1 to every entity initially)
 # Input: list Motifs
 # Output: dictionary count (count with pseudocounts)
-
 def CountWithPseudocounts(Motifs):
     t = len(Motifs)
     k = len(Motifs[0])
