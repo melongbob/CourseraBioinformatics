@@ -2,6 +2,20 @@ import random
 
 #------------------------- Week 4 ----------------------------------
 
+# Randomly choose a k-mer from a string Text, based on a profile matrix profile
+# Input:  string Text, list Profile, int k
+# Output: string ProfileGeneratedString
+def ProfileGeneratedString(Text, profile, k):
+    n = len(Text)
+    probabilities = {}
+
+    for i in range(n-k+1):
+        probabilities[Text[i : i+k]] = Pr(Text[i : i+k], profile)
+
+    probabilities = Normalize(probabilities)
+    
+    return WeightedDie(probabilities)
+    
 # Generates a random probability between 0 and 1, returns a k-mer that corresponds to the probability
 # Input:  dictionary Probabilities (keys = k-mers, values = probabiliites)
 # Output: string kmer
