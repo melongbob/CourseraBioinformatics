@@ -2,6 +2,21 @@ import random
 
 #------------------------- Week 4 ----------------------------------
 
+# Generates a random probability between 0 and 1, returns a k-mer that corresponds to the probability
+# Input:  dictionary Probabilities (keys = k-mers, values = probabiliites)
+# Output: string kmer
+def WeightedDie(Probabilities):
+    kmer = '' 
+    p = random.uniform(0, 1)
+    comparison = list(Probabilities.values())[0]
+    
+    for i in range(len(Probabilities)):
+        if p <= comparison:
+            kmer = list(Probabilities.keys())[i]
+            return kmer
+        else:
+            comparison += list(Probabilities.values())[i + 1]
+            
 # Takes in a dictionary of probabilities, returns a normalized dictionary whose probabilities of k-mers add up to 1
 # Input: dictionary Probabilities (keys = k-mers, values = probabilities of these k-mers)
 # Output: normalized dictionary
