@@ -1,8 +1,28 @@
 #------------------------- Week 4 ----------------------------------
 
+#Returns best motifs calculated with pseudocounts (to use, functions
+#need to be edited to integrate count, profile with pseudocounts
+#Input: list Dna, int k, int t
+#Output: list BestMotifs
+def GreedyMotifSearchWithPseudocounts(Dna, k, t):
+    BestMotifs = [] 
+    for i in range(0, t):
+        BestMotifs.append(Dna[i][0:k])
+    n = len(Dna[0])
+    for i in range(n-k+1):
+        Motifs = []
+        Motifs.append(Dna[0][i:i + k])
+        for j in range(1, t):
+            P = ProfileWithPseudocounts(Motifs[0:j])
+            Motifs.append(ProfileMostProbablePattern(Dna[j], k, P))
+        if Score(Motifs) < Score(BestMotifs):
+            BestMotifs = Motifs
+    
+    return BestMotifs
+
 # Returns profile calculated with pseudocounts
-# Input:  A set of kmers Motifs
-# Output: ProfileWithPseudocounts(Motifs)
+# Input:  list Motifs
+# Output: dictionary profile (calculated with pseudocounts)
 def ProfileWithPseudocounts(Motifs):
     t = len(Motifs)
     k = len(Motifs[0])
@@ -16,7 +36,7 @@ def ProfileWithPseudocounts(Motifs):
 
 # Returns count with pseudocounts (adds 1 to every entity initially)
 # Input: list Motifs
-# Output: dictionary count (count with pseudo-counts)
+# Output: dictionary count (count with pseudocounts)
 
 def CountWithPseudocounts(Motifs):
     t = len(Motifs)
