@@ -2,6 +2,16 @@ import random
 
 #------------------------- Week 4 ----------------------------------
 
+# Takes in a dictionary of probabilities, returns a normalized dictionary whose probabilities of k-mers add up to 1
+# Input: dictionary Probabilities (keys = k-mers, values = probabilities of these k-mers)
+# Output: normalized dictionary
+def Normalize(Probabilities):
+    total = sum(Probabilities.values())
+    normalizedProbabilities = Probabilities
+    for i in normalizedProbabilities:
+        normalizedProbabilities[i] = normalizedProabbilities[i] / total
+    return normalizedProbabilities
+    
 # Loops until motif score stops improving
 # Input:  Positive integers k and t, followed by a list of strings Dna
 # Output: RandomizedMotifSearch(Dna, k, t)
