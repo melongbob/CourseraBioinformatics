@@ -2,6 +2,21 @@ import random
 
 #------------------------- Week 4 ----------------------------------
 
+# Loops until motif score stops improving
+# Input:  Positive integers k and t, followed by a list of strings Dna
+# Output: RandomizedMotifSearch(Dna, k, t)
+def RandomizedMotifSearch(Dna, k, t):
+    M = RandomMotifs(Dna, k, t)
+    BestMotifs = M
+
+    while True:
+        Profile = ProfileWithPseudocounts(M)
+        M = Motifs(Profile, Dna)
+        if Score(M) < Score(BestMotifs):
+            BestMotifs = M
+        else:
+            return BestMotifs
+    
 # Uses raondom.randint to choose a random k-mer from each of t different strings Dna
 # Input: list Dna, int k, int t
 # Output: list RandomStrings
@@ -17,7 +32,7 @@ def RandomMotifs(Dna, k, t):
 # Output: list MostProbableMotifs
 def Motifs(Profile, Dna):
     Text = Dna
-    k = 4
+    k = len(Profile['A'])
     Profile = Profile
     MostProbableMotifs = []
     
