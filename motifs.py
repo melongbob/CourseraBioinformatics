@@ -2,18 +2,36 @@ import random
 
 #------------------------- Week 4 ----------------------------------
 
+# Returns best set of Motifs using Gibbs Sampler
+# Input:  int k, t, N, string Dna
+# Output: list BestMotifs
+def GibbsSampler(Dna, k, t, N):
+    BestMotifs = []
+
+    Motifs = RandomMotifs(Dna, k, t)
+    BestMotifs = Motifs
+
+    for j in range(0, N):
+        i = random.randint(0, t - 1)
+        Motifs.remove(Motifs[i])
+        profile = ProfileWithPseudocounts(Motifs)
+        Motifi = ProfileGeneratedString(Dna[i], profile, k)
+        Motifs.insert(i, Motifi)
+        
+        if Score(Motifs) < Score(BestMotifs):
+            BestMotifs = Motifs
+    
+    return BestMotifs
+
 # Randomly choose a k-mer from a string Text, based on a profile matrix profile
-# Input:  string Text, list Profile, int k
+# Input:  string Text, list profile, int k
 # Output: string ProfileGeneratedString
 def ProfileGeneratedString(Text, profile, k):
     n = len(Text)
     probabilities = {}
-
     for i in range(n-k+1):
         probabilities[Text[i : i+k]] = Pr(Text[i : i+k], profile)
-
     probabilities = Normalize(probabilities)
-    
     return WeightedDie(probabilities)
     
 # Generates a random probability between 0 and 1, returns a k-mer that corresponds to the probability
@@ -38,7 +56,7 @@ def Normalize(Probabilities):
     total = sum(Probabilities.values())
     normalizedProbabilities = Probabilities
     for i in normalizedProbabilities:
-        normalizedProbabilities[i] = normalizedProabbilities[i] / total
+        normalizedProbabilities[i] = normalizedProbabilities[i] / total
     return normalizedProbabilities
     
 # Loops until motif score stops improving
